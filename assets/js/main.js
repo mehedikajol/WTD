@@ -1,20 +1,8 @@
-$(document).ready(function () {
-  // Magnific Popup Active
-  $(".project-popup").magnificPopup({
-    type: "image",
-    gallery: {
-      enabled: true,
-    },
-  });
-
-  // Counter Active
-  $(".counterup").counterUp();
-
-  // Slick JS
-  $('.testimonials').slick({
-    arrows: false,
-    dots: true,
-    autoplay: true,
-    loop: true
-  });
+jQuery(document).ready(function(){
+    jQuery(".banner").owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        nav: false
+    });
 });
