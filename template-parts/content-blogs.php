@@ -2,7 +2,7 @@
 <div class="blogs">
     <div class="blog-left">
         <h4>latest blog</h4>
-        <div class="blogs">
+        <div class="blog">
             <div class="single-blog">
                 <h4><a href="">Blog Title</a></h4>
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog2.jpg" alt="">

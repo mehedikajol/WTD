@@ -1,8 +1,13 @@
 <?php
 
 function wtd_setup(){
+    // TEXT DOMAIN
     load_theme_textdomain('wtd');
 
+    // TITLE 
+    add_theme_support( 'title-tag' );
+
+    // REGISTERING MENUs
     register_nav_menus( 
         array(
             'main-menu' => __('Main Menu', 'wtd'),

@@ -289,7 +289,8 @@ h6 {
 .blog-left > h4,
 .about-left > h4,
 .about-menu > h4,
-.single-sidebar > h4, .page-left h4 {
+.single-sidebar > h4,
+.page-left h4 {
   text-transform: capitalize;
   font-size: 35px;
   margin-bottom: 20px;
