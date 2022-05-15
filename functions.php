@@ -31,3 +31,18 @@ function wtd_scripts() {
     // MAIN JS
     wp_enqueue_script( 'main', get_template_directory_uri().'/assets/js/main.js', array('jquery'), '1.0.0', true );
 }add_action('wp_enqueue_scripts', 'wtd_scripts');
+
+// REGISTER SIDEBAR 
+function wtd_widgets(){
+    register_sidebar( 
+        array(
+            'name' => __('Main Sidebar', 'wtd'),
+            'id' => 'sidebar-1',
+            'description' => __('Our Main Sidebar', 'wtd'),
+            'before_widget' => '<div class="single-sidebar">',
+            'after_widget' => '</div>',
+            'before_title' => '<h4>',
+            'after_title' => '</h4>',
+        )
+    );
+}add_action( 'widgets_init', 'wtd_widgets' );
