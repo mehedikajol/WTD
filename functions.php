@@ -7,6 +7,9 @@ function wtd_setup(){
     // TITLE 
     add_theme_support( 'title-tag' );
 
+    // ADDING THUMBNAIL SUPPORT
+    add_theme_support( 'post-thumbnails' );
+
     // REGISTERING MENUs
     register_nav_menus( 
         array(

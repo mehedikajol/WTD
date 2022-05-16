@@ -190,7 +190,7 @@ h6 {
 
 /* Blog CSS */
 .blogs {
-  padding: 60px 0;
+  padding: 40px 0;
 }
 .blog-left {
   float: left;
@@ -247,8 +247,7 @@ h6 {
   margin-bottom: 20px;
   margin-top: 25px;
 }
-.single-blog:nth-child(2),
-.single-blog:nth-child(4) {
+.single-blog:nth-child(2n){
   margin-right: 0;
 }
 .single-blog h4 a {
@@ -265,6 +264,7 @@ h6 {
   width: 100%;
   border: 3px solid #ddd;
   padding: 3px;
+  height: 200px;
 }
 .blog-meta {
   text-align: center;
