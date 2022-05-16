@@ -247,7 +247,7 @@ h6 {
   margin-bottom: 20px;
   margin-top: 25px;
 }
-.single-blog:nth-child(2n){
+.single-blog:nth-child(2n) {
   margin-right: 0;
 }
 .single-blog h4 a {
@@ -470,4 +470,40 @@ h6 {
 }
 .content {
   width: 700px;
+}
+
+.error-page {
+  padding: 40px 0;
+}
+.error-page h1 {
+  padding: 20px;
+  font-size: 32px;
+}
+.error-page p {
+  font-size: 20px;
+  padding: 20px;
+}
+.error-page form {
+  padding: 20px;
+}
+.error-page input {
+  width: 100%;
+  display: block;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+.error-page input[type="submit"] {
+  padding: 10px;
+  font-size: 15px;
+  margin-top: 10px;
+  width: 100%;
+  background: tomato;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
 }
