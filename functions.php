@@ -3,7 +3,7 @@
 function halim_setup(){
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails', array(
-        'post', 'sliders', 'teams',
+        'post', 'sliders', 'teams', 'testimonials',
     ));
     load_theme_textdomain('halim', get_template_directory() . '/languages');
 
@@ -119,7 +119,7 @@ function halim_custom_posts(){
         ),
     ));
 
-    // ADDING COUNTER
+    // ADDING TEAM MEMBERS
     register_post_type('teams', array(
         'labels' => array(
             'name' => __('Team', 'halim'),
@@ -135,6 +135,30 @@ function halim_custom_posts(){
             'search_items' => __('Search Team Members', 'halim'),
             'not_found' => __('No Team Members Found', 'halim'),
             'not_found_in_trash' => __('No Team Members in Trash', 'halim'),
+        ),
+        'public' => true,
+        'show_ui' => true,
+        'supports' => array(
+            'title', 'custom-fields', 'page-attributes', 'thumbnail',
+        ),
+    ));
+
+    // ADDING TESTIMONIALS
+    register_post_type('testimonials', array(
+        'labels' => array(
+            'name' => __('Testimonials', 'halim'),
+            'singular_name' => __('Testimonial', 'halim'),
+            'menu_name' => __('Testimonials', 'halim'),
+            'name_admin_bar' => __('Testimonial', 'halim'),
+            'add_new' => __('Add Testimonial', 'halim'),
+            'add_new_item' => __('Add New Testimonial', 'halim'),
+            'new_item' => __('New Testimonial', 'halim'),
+            'edit_item' => __('Edit Testimonial', 'halim'),
+            'view_item' => __('View Testimonial', 'halim'),
+            'all_items' => __('All Testimonials', 'halim'),
+            'search_items' => __('Search Testimonials', 'halim'),
+            'not_found' => __('No Testimonials Found', 'halim'),
+            'not_found_in_trash' => __('No Testimonials in Trash', 'halim'),
         ),
         'public' => true,
         'show_ui' => true,
