@@ -392,10 +392,14 @@ a.box-btn:hover i.fa {
 #navbarNav ul li:last-child a {
   padding-right: 0;
 }
-.mainmenu ul li.current a,
-.mainmenu ul li a:hover {
-  color: #ff7200;
+.mainmenu ul li a {
+  transition: 0.5s;
 }
+.mainmenu ul li a:hover,
+.mainmenu .current-menu-item a {
+  color: #635cdb !important;
+}
+
 .header.header-fixed.sticky a {
   color: #333 !important;
 }
