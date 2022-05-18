@@ -41,10 +41,14 @@
                      </button>
                      <div class="collapse navbar-collapse ml-auto mainmenu justify-content-end" id="navbarNav">
                         
-                        <?php wp_nav_menu(array(
+                     <!-- NAVIGATION MENU -->
+                     <?php 
+                        wp_nav_menu(array(
                            'theme_location' => 'primary_menu',
                            'menu_class' => 'navbar-nav ml-auto',
-                        ));?>
+                        ));
+                     ?>
+
                      </div>
                   </nav>
                </div>

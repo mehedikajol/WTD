@@ -9,58 +9,54 @@ get_header();?>
       <!-- Slider Area Start -->
       <section class="slider-area" id="home">
          <div class="slider owl-carousel">
-            <div class="single-slide" style="background-image:url('<?php echo get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/assets/img/slider/slide-1.jpg')">
+
+         <?php
+            $args = array(  
+               'post_type' => 'sliders',
+               'posts_per_page' => 3, 
+           );
+           $query = new WP_Query($args);
+           if($query -> have_posts()){
+              while($query -> have_posts()){
+                 $query -> the_post();
+                 $slide_subtitle = get_post_meta( get_the_id(), 'slide_subtitle', true);
+                 $slide_btn_text = get_post_meta( get_the_id(), 'slide_btn_text', true);
+                 $slide_btn_link = get_post_meta( get_the_id(), 'slide_btn_link', true);
+         ?>
+
+            <div class="single-slide" style="background-image:url('<?php the_post_thumbnail_url(); ?>')">
                <div class="container">
                   <div class="row">
                      <div class="col-xl-12">
                         <div class="slide-table">
                            <div class="slide-tablecell">
-                              <h4>We Are Advanced Batch 11</h4>
-                              <h2>Digital Agency</h2>
-                              <p>We are a passionate digital design agency that specializes in beautiful and easy-to-use digital design & web development services.</p>
-                              <a href="#" class="box-btn">our projects <i class="fa fa-angle-double-right"></i></a>
+                              <h4><?php the_title();?></h4>
+                              <h2><?php echo $slide_subtitle; ?></h2>
+                              <p><?php the_content();?></p>
+                              <?php 
+                                 if($slide_btn_text){
+                              ?>
+                                 <a href="<?php echo $slide_btn_link; ?>" class="box-btn"><?php echo $slide_btn_text; ?> <i class="fa fa-angle-double-right"></i></a>
+                              <?php
+                                 }
+                              ?>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-            <div class="single-slide" style="background-image:url('<?php echo get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/assets/img/slider/slide-2.jpg')">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-xl-12">
-                        <div class="slide-table">
-                           <div class="slide-tablecell">
-                              <h4>We Are Halim</h4>
-                              <h2>Modern Agency</h2>
-                              <p>We are a passionate digital design agency that specializes in beautiful and easy-to-use digital design & web development services.</p>
-                              <a href="#" class="box-btn">contact us <i class="fa fa-angle-double-right"></i></a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="single-slide" style="background-image:url('<?php echo get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/assets/img/slider/slide-3.jpg')">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-xl-12">
-                        <div class="slide-table">
-                           <div class="slide-tablecell">
-                              <h4>
-                              We Are Halim</h4>
-                              <h2>Creative Agency</h2>
-                              <p>We are a passionate digital design agency that specializes in beautiful and easy-to-use digital design & web development services.</p>
-                              <a href="#" class="box-btn">crreative team <i class="fa fa-angle-double-right"></i></a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
+
+         <?php 
+            }
+            wp_reset_postdata();
+         }  
+         ?>
+
          </div>
       </section>
       <!-- Slider Area Start -->
+
       <!-- About Area Start -->
       <section class="about-area pt-100 pb-100" id="about">
          <div class="container">
@@ -105,6 +101,7 @@ get_header();?>
          </div>
       </section>
       <!-- About Area End -->
+
       <!-- Choose Area End -->
       <section class="choose">
          <div class="container">
@@ -187,6 +184,7 @@ get_header();?>
          </div>
       </section>
       <!-- Choose Area End -->
+
       <!-- Services Area Start -->
       <section class="services-area pt-100 pb-50" id="services">
          <div class="container">
@@ -280,6 +278,7 @@ get_header();?>
          </div>
       </section>
       <!-- Counter Area End -->
+
       <!-- Team Area Start -->
       <section class="team-area pb-100 pt-100" id="team">
          <div class="container">
@@ -395,6 +394,7 @@ get_header();?>
          </div>
       </section>
       <!-- Testimonilas Area End -->
+
       <!-- Latest News Area Start -->
       <section class="blog-area pb-100 pt-100" id="blog">
          <div class="container">
