@@ -69,5 +69,30 @@ function halim_custom_posts(){
         ),
         'show_in_rest' => true,
     ));
+
+    // ADDING SERVICES
+    register_post_type('services', array(
+        'labels' => array(
+            'name' => __('Services', 'halim'),
+            'singular_name' => __('Service', 'halim'),
+            'menu_name' => __('Services', 'halim'),
+            'name_admin_bar' => __('Service', 'halim'),
+            'add_new' => __('Add Service', 'halim'),
+            'add_new_item' => __('Add New Service', 'halim'),
+            'new_item' => __('New Service', 'halim'),
+            'edit_item' => __('Edit Service', 'halim'),
+            'view_item' => __('View Service', 'halim'),
+            'all_items' => __('All Services', 'halim'),
+            'search_items' => __('Search Services', 'halim'),
+            'not_found' => __('No Services Found', 'halim'),
+            'not_found_in_trash' => __('No ServiceServices in Trash', 'halim'),
+        ),
+        'public' => true,
+        'show_ui' => true,
+        'supports' => array(
+            'title', 'editor', 'custom-fields', 'page-attributes',
+        ),
+        'show_in_rest' => true,
+    ));
 }
 add_action('init', 'halim_custom_posts');
