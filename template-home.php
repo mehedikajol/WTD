@@ -19,9 +19,9 @@ get_header();?>
            if($query -> have_posts()){
               while($query -> have_posts()){
                  $query -> the_post();
-                 $slide_subtitle = get_post_meta( get_the_id(), 'slide_subtitle', true);
-                 $slide_btn_text = get_post_meta( get_the_id(), 'slide_btn_text', true);
-                 $slide_btn_link = get_post_meta( get_the_id(), 'slide_btn_link', true);
+                 $slider_subheading = get_field('slider_subheading');
+                 $slider_button_text = get_field('slider_button_text');
+                 $slider_button_link = get_field('slider_button_link');
          ?>
 
             <div class="single-slide" style="background-image:url('<?php the_post_thumbnail_url(); ?>')">
@@ -31,12 +31,12 @@ get_header();?>
                         <div class="slide-table">
                            <div class="slide-tablecell">
                               <h4><?php the_title();?></h4>
-                              <h2><?php echo $slide_subtitle; ?></h2>
+                              <h2><?php echo $slider_subheading; ?></h2>
                               <p><?php the_content();?></p>
                               <?php 
-                                 if($slide_btn_text){
+                                 if($slider_button_text){
                               ?>
-                                 <a href="<?php echo $slide_btn_link; ?>" class="box-btn"><?php echo $slide_btn_text; ?> <i class="fa fa-angle-double-right"></i></a>
+                                 <a href="<?php echo $slider_button_link; ?>" class="box-btn"><?php echo $slider_button_text; ?> <i class="fa fa-angle-double-right"></i></a>
                               <?php
                                  }
                               ?>
