@@ -191,26 +191,33 @@ get_header();?>
       <section class="counter-area">
          <div class="container-fluid">
             <div class="row">
+
+            <?php
+               $args = array(  
+                     'post_type' => 'counters',
+                     'posts_per_page' => 4, 
+                     'order' => 'ASC',
+                     'orderby' => 'menu_order',
+               );
+               $query = new WP_Query($args);
+               if($query -> have_posts()){
+                     while($query -> have_posts()){
+                        $query -> the_post();
+                        $counter_number = get_field('counter_number');
+                        $counter_icon = get_field('counter_icon');
+            ?>
+
                <div class="col-md-3">
                   <div class="single-counter">
-                     <h4><i class="fa fa-user"></i><span class="counter">567</span>customers</span></h4>
+                     <h4><i class="<?php echo $counter_icon; ?>"></i><span class="counter"><?php echo $counter_number; ?></span><?php the_title(); ?></span></h4>
                   </div>
                </div>
-               <div class="col-md-3">
-                  <div class="single-counter">
-                     <h4><i class="fa fa-code"></i><span class="counter">236</span>line of codes</h4>
-                  </div>
-               </div>
-               <div class="col-md-3">
-                  <div class="single-counter">
-                     <h4><i class="fa fa-file"></i><span class="counter">789</span>users</h4>
-                  </div>
-               </div>
-               <div class="col-md-3">
-                  <div class="single-counter">
-                     <h4><i class="fa fa-coffee"></i><span class="counter">1,395</span>cup of coffees</h4>
-                  </div>
-               </div>
+
+            <?php 
+                  }
+                  wp_reset_postdata();
+               }
+            ?>
             </div>
          </div>
       </section>
@@ -228,54 +235,68 @@ get_header();?>
                </div>
             </div>
             <div class="row">
+
+            <?php 
+               $args = array(
+                  'post_type' => 'teams',
+                  'posts_per_page' => 3,
+                  'order' => 'ASC',
+                  'orderby' => 'menu_order',
+               );
+               $query = new WP_Query($args);
+               if($query -> have_posts()){
+                  while($query -> have_posts()){
+                     $query -> the_post();
+                     $team_designation = get_field('team_designation');
+                     $facebook_link = get_field('facebook_link');
+                     $linkedin_link = get_field('linkedin_link');
+                     $twitter_link = get_field('twitter_link');
+                     $instagram_link = get_field('instagram_link');
+
+            ?>
+
                <div class="col-md-4">
                   <div class="single-team">
-                     <img src="<?php echo get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/assets/img/team/1.jpg" alt="" />
+                     <img src="<?php echo the_post_thumbnail_url(); ?>" alt="" />
                      <div class="team-hover">
                         <div class="team-content">
-                           <h4>john doe <span>web developer</span></h4>
+                           <h4><?php the_title(); ?> <span><?php echo $team_designation;?></span></h4>
                            <ul>
-                              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                              <?php 
+                                 if($facebook_link){
+                              ?>
+                                 <li><a href="<?php echo $facebook_link; ?>"><i class="fa fa-facebook" title="Facebook"></i></a></li>
+                              <?php
+                                 }
+                                 if($twitter_link){
+                              ?>
+                              
+                                 <li><a href="<?php echo $twitter_link; ?>"><i class="fa fa-twitter" title="Twitter"></i></a></li>
+                              <?php
+                                 }
+                                 if($linkedin_link){
+                              ?>
+                                 <li><a href="<?php echo $linkedin_link; ?>"><i class="fa fa-linkedin" title="Linkedin"></i></a></li>
+                              <?php
+                                 }
+                                 if($instagram_link){
+                              ?>
+                                 <li><a href="<?php echo $instagram_link; ?>"><i class="fa fa-instagram" title="Instagram"></i></a></li>
+                              <?php
+                                 }
+                              ?>
                            </ul>
                         </div>
                      </div>
                   </div>
                </div>
-               <div class="col-md-4">
-                  <div class="single-team">
-                     <img src="<?php echo get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/assets/img/team/2.jpg" alt="" />
-                     <div class="team-hover">
-                        <div class="team-content">
-                           <h4>john doe <span>web developer</span></h4>
-                           <ul>
-                              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="single-team">
-                     <img src="<?php echo get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/<?php get_template_directory_uri(); ?>/assets/img/team/3.jpg" alt="" />
-                     <div class="team-hover">
-                        <div class="team-content">
-                           <h4>john doe <span>web developer</span></h4>
-                           <ul>
-                              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+
+            <?php
+                  }
+                  wp_reset_postdata();
+               }
+            ?>
+
             </div>
          </div>
       </section>

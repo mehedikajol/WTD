@@ -3,7 +3,7 @@
 function halim_setup(){
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails', array(
-        'post', 'sliders'
+        'post', 'sliders', 'teams',
     ));
     load_theme_textdomain('halim', get_template_directory() . '/languages');
 
@@ -85,7 +85,7 @@ function halim_custom_posts(){
             'all_items' => __('All Services', 'halim'),
             'search_items' => __('Search Services', 'halim'),
             'not_found' => __('No Services Found', 'halim'),
-            'not_found_in_trash' => __('No ServiceServices in Trash', 'halim'),
+            'not_found_in_trash' => __('No Services in Trash', 'halim'),
         ),
         'public' => true,
         'show_ui' => true,
@@ -94,5 +94,54 @@ function halim_custom_posts(){
         ),
         'show_in_rest' => true,
     ));
+
+    // ADDING COUNTER
+    register_post_type('counters', array(
+        'labels' => array(
+            'name' => __('Counters', 'halim'),
+            'singular_name' => __('Counter', 'halim'),
+            'menu_name' => __('Counters', 'halim'),
+            'name_admin_bar' => __('Counter', 'halim'),
+            'add_new' => __('Add Counter', 'halim'),
+            'add_new_item' => __('Add New Counter', 'halim'),
+            'new_item' => __('New Counter', 'halim'),
+            'edit_item' => __('Edit Counter', 'halim'),
+            'view_item' => __('View Counter', 'halim'),
+            'all_items' => __('All Counters', 'halim'),
+            'search_items' => __('Search Counters', 'halim'),
+            'not_found' => __('No Counters Found', 'halim'),
+            'not_found_in_trash' => __('No Counters in Trash', 'halim'),
+        ),
+        'public' => true,
+        'show_ui' => true,
+        'supports' => array(
+            'title', 'custom-fields', 'page-attributes',
+        ),
+    ));
+
+    // ADDING COUNTER
+    register_post_type('teams', array(
+        'labels' => array(
+            'name' => __('Team', 'halim'),
+            'singular_name' => __('Team', 'halim'),
+            'menu_name' => __('Teams', 'halim'),
+            'name_admin_bar' => __('Team', 'halim'),
+            'add_new' => __('Add Team Member', 'halim'),
+            'add_new_item' => __('Add New Team Member', 'halim'),
+            'new_item' => __('New Team Member', 'halim'),
+            'edit_item' => __('Edit Team Member', 'halim'),
+            'view_item' => __('View Team Member', 'halim'),
+            'all_items' => __('All Team Members', 'halim'),
+            'search_items' => __('Search Team Members', 'halim'),
+            'not_found' => __('No Team Members Found', 'halim'),
+            'not_found_in_trash' => __('No Team Members in Trash', 'halim'),
+        ),
+        'public' => true,
+        'show_ui' => true,
+        'supports' => array(
+            'title', 'custom-fields', 'page-attributes', 'thumbnail',
+        ),
+    ));
+
 }
 add_action('init', 'halim_custom_posts');

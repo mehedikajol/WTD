@@ -1218,9 +1218,18 @@ a.box-btn:hover i.fa {
 }
 
 .team-hover ul li a {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 50%;
   color: #fff;
   font-size: 13px;
   display: block;
+  transition: 0.5s;
+}
+.team-hover ul li a:hover {
+  background: #635cdb;
+  color: #ffffff;
 }
 .single-team {
   position: relative;
