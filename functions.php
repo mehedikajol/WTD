@@ -169,3 +169,40 @@ function halim_custom_posts(){
 
 }
 add_action('init', 'halim_custom_posts');
+
+
+function acf_custom_css(){
+?>
+    <style>
+        .header-top{
+            background-color: <?php the_field('header_background_color', 'option') ?>
+        }
+    </style>
+<?php
+}
+add_action('wp_head', 'acf_custom_css');
+
+// ACF OPTIONS PAGE
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> __('Halim Theme Options', 'halim'),
+		'menu_title'	=> __('Halim Theme Options', 'halim'),
+		'menu_slug' 	=> 'halim-options',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> __('Halim Theme Header Settings', 'halim'),
+		'menu_title'	=> __('Header', 'halim'),
+		'parent_slug'	=> 'halim-options',
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> __('Halim Theme Footer Settings', 'halim'),
+		'menu_title'	=> __('Footer', 'halim'),
+		'parent_slug'	=> 'halim-options',
+	));
+	
+}
