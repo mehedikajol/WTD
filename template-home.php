@@ -61,41 +61,50 @@ get_header();?>
       <section class="about-area pt-100 pb-100" id="about">
          <div class="container">
             <div class="row section-title">
+               <?php 
+                  $about_section = get_field('about_section_title', 'option');
+               ?>
                <div class="col-md-6 text-right">
-                  <h3><span>who we are?</span> about us</h3>
+                  <h3>
+                     <span><?php echo $about_section['subheading'] ?></span>
+                     <?php echo $about_section['heading'] ?>
+                  </h3>
                </div>
                <div class="col-md-6">
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry.d </p>
+                  <p><?php echo $about_section['description'] ?></p>
                </div>
             </div>
             <div class="row">
                <div class="col-md-7">
                   <div class="about">
+                     
+                     <?php
+                        $about_content = get_field('about_content', 'option');
+
+                     ?>
                      <div class="page-title">
-                        <h4>welcome to halim</h4>
+                        <h4><?php echo $about_content['title'] ?></h4>
                      </div>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry </p>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda distinctio maxime laborum delectus aliquam ipsum itaque voluptatem non reiciendis aliquid totam facere, tempora iure iusto adipisci doloremque in, amet, alias nostrum. Explicabo reprehenderit.</p>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry </p>
-                     <a href="#" class="box-btn">read more <i class="fa fa-angle-double-right"></i></a>
+                     <p><?php echo $about_content['description'] ?></p>
+                     <a href="<?php echo $about_content['button_link'] ?>" class="box-btn"><?php echo $about_content['button_text'] ?> <i class="fa fa-angle-double-right"></i></a>
+
                   </div>
                </div>
                <div class="col-md-5">
-                  <div class="single_about">
-                     <i class="fa fa-laptop"></i>
-                     <h4>our mission</h4>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry </p>
-                  </div>
-                  <div class="single_about">
-                     <i class="fa fa-user"></i>
-                     <h4>our vission</h4>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry </p>
-                  </div>
-                  <div class="single_about">
-                     <i class="fa fa-pencil"></i>
-                     <h4>our history</h4>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry </p>
-                  </div>
+
+                  <?php
+                     $about_features = get_field('about_features', 'option');
+                     foreach($about_features as $about_feature){
+                  ?>
+                     <div class="single_about">
+                        <i class="fa <?php echo $about_feature['icon']; ?>"></i>
+                        <h4><?php echo $about_feature['title']; ?></h4>
+                        <p><?php echo $about_feature['description']; ?></p>
+                     </div>
+                  <?php
+                     }   
+                  ?>
+                  
                </div>
             </div>
          </div>

@@ -194,14 +194,14 @@ if( function_exists('acf_add_options_page') ) {
 	));
 	
 	acf_add_options_sub_page(array(
-		'page_title' 	=> __('Halim Theme Header Settings', 'halim'),
+		'page_title' 	=> __('Halim Theme Header Options', 'halim'),
 		'menu_title'	=> __('Header', 'halim'),
 		'parent_slug'	=> 'halim-options',
 	));
 	
 	acf_add_options_sub_page(array(
-		'page_title' 	=> __('Halim Theme Footer Settings', 'halim'),
-		'menu_title'	=> __('Footer', 'halim'),
+		'page_title' 	=> __('Halim Theme About Options', 'halim'),
+		'menu_title'	=> __('About Section', 'halim'),
 		'parent_slug'	=> 'halim-options',
 	));
 	
