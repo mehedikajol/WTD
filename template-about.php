@@ -11,10 +11,10 @@ get_header();?>
         <div class="row">
             <div class="col-xl-12">
                 <div class="breadcumb">
-                    <h4>About Us</h4>
+                    <h4><?php the_title(); ?></h4>
                     <ul>
-                        <li><a href=""></a>Home</li> / 
-                        <li>About Us</li>
+                        <li><a href="<?php echo site_url(); ?>">Home</a></li> / 
+                        <li><?php the_title(); ?></li>
                     </ul>
                 </div>
             </div>
@@ -27,31 +27,27 @@ get_header();?>
          <div class="container">
             <div class="row">
                <div class="col-md-7">
+                  
                   <div class="about">
                      <div class="page-title">
-                        <h4>welcome to halim</h4>
+                        <h4><?php the_field('about_page_title'); ?></h4>
                      </div>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry </p>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda distinctio maxime laborum delectus aliquam ipsum itaque voluptatem non reiciendis aliquid totam facere, tempora iure iusto adipisci doloremque in, amet, alias nostrum. Explicabo reprehenderit.</p>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry </p>
+                     <?php the_field('about_page_description'); ?>
                   </div>
                </div>
                <div class="col-md-5">
-                  <div class="single_about">
-                     <i class="fa fa-laptop"></i>
-                     <h4>our mission</h4>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry </p>
-                  </div>
-                  <div class="single_about">
-                     <i class="fa fa-user"></i>
-                     <h4>our vission</h4>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry </p>
-                  </div>
-                  <div class="single_about">
-                     <i class="fa fa-pencil"></i>
-                     <h4>our history</h4>
-                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry </p>
-                  </div>
+                  <?php
+                     $about_page_features = get_field('about_page_features');
+                     foreach($about_page_features as $about_page_feature){
+                  ?>
+                     <div class="single_about">
+                        <i class="fa <?php echo $about_page_feature['feature_icon']; ?>"></i>
+                        <h4><?php echo $about_page_feature['feature_title']; ?></h4>
+                        <p><?php echo $about_page_feature['feature_description']; ?></p>
+                     </div>
+                  <?php
+                     }
+                  ?>
                </div>
             </div>
          </div>
