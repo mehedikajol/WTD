@@ -65,13 +65,14 @@ get_header();?>
                         <img src="<?php echo the_post_thumbnail_url(); ?>" alt="">
                         <div class="portfolio-hover">
                            <div class="portfolio-content">
-                              <h3><a href="portfolio-single.html" class=""><i class="fa fa-link"></i> <?php the_title(); ?> <span><?php the_content(); ?></span></a></h3>
+                              <h3><a target="_blank" href="<?php the_permalink(); ?>" class=""><i class="fa fa-link"></i> <?php the_title(); ?> <span><?php the_field('designations'); ?></span></a></h3>
                            </div>
                         </div>
                      </div>
                   </div>
                <?php
                   }
+                  wp_reset_postdata();
                ?>
 
             </div>

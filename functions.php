@@ -3,7 +3,7 @@
 function halim_setup(){
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails', array(
-        'post', 'sliders', 'teams', 'testimonials', 'portfolio'
+        'post', 'sliders', 'teams', 'testimonials', 'portfolio', 'gallerys',
     ));
     load_theme_textdomain('halim', get_template_directory() . '/languages');
 
@@ -202,6 +202,34 @@ function halim_custom_posts(){
         'hierarchical' => true,
         'show_admin_column' => true,
     ));
+
+        // ADDING PORTFOLIO
+        register_post_type('gallerys', array(
+            'labels' => array(
+                'name' => __('Gallerys', 'halim'),
+                'singular_name' => __('Gallery', 'halim'),
+                'menu_name' => __('Gallerys', 'halim'),
+                'name_admin_bar' => __('Gallery', 'halim'),
+                'add_new' => __('Add Gallery', 'halim'),
+                'add_new_item' => __('Add New Gallery', 'halim'),
+                'new_item' => __('New Gallery', 'halim'),
+                'edit_item' => __('Edit Gallery', 'halim'),
+                'view_item' => __('View Gallery', 'halim'),
+                'all_items' => __('All Gallerys', 'halim'),
+                'search_items' => __('Search Gallerys', 'halim'),
+                'not_found' => __('No Gallerys Found', 'halim'),
+                'not_found_in_trash' => __('No Gallerys in Trash', 'halim'),
+                'featured_image' => __( 'Gallery Image', 'halim'),
+                'set_featured_image'    => __( 'Set Gallery Image', 'halim'),
+                'remove_featured_image' => __( 'Remove Gallery Image', 'halim'),
+                'use_featured_image'    => __( 'Use Gallery image', 'halim'),
+            ),
+            'public' => true,
+            'show_ui' => true,
+            'supports' => array(
+                'title', 'custom-fields', 'thumbnail',
+            ),
+        ));
 
 }
 add_action('init', 'halim_custom_posts');
