@@ -1645,6 +1645,9 @@ a.box-btn:hover i.fa {
 .breadcumb ul li {
   margin: 0 10px;
 }
+.breadcumb ul li a{
+  color: #ffffff !important;
+}
 
 .single-gallery {
   position: relative;

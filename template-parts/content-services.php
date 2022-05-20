@@ -3,10 +3,15 @@
     <div class="container">
     <div class="row section-title">
         <div class="col-md-6 text-right">
-            <h3><span>who we are?</span> our services</h3>
+            <?php
+                $service_heading = get_field('service_heading', 'option');
+                $service_subheading = get_field('service_subheading', 'option');  
+                $service_description = get_field('service_description', 'option');
+            ?>
+            <h3><span><?php echo $service_subheading; ?></span><?php echo $service_heading; ?></h3>
         </div>
         <div class="col-md-6">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry.d </p>
+            <p><?php echo $service_description; ?></p>
         </div>
     </div>
     <div class="row">

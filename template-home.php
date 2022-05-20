@@ -216,10 +216,10 @@ get_header();?>
          <div class="container">
             <div class="row section-title">
                <div class="col-md-6 text-right">
-                  <h3><span>who we are?</span> creative team</h3>
+                  <h3><span><?php the_field('team_subheading', 'option'); ?></span><?php the_field('team_heading', 'option'); ?></h3>
                </div>
                <div class="col-md-6">
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry.d </p>
+                  <p><?php the_field('team_description', 'option'); ?></p>
                </div>
             </div>
             <div class="row">
@@ -295,10 +295,10 @@ get_header();?>
          <div class="container">
             <div class="row section-title white-section">
                <div class="col-md-6 text-right">
-                  <h3><span>who we are?</span> what client say</h3>
+                  <h3><span><?php the_field('testimonial_subheading', 'option'); ?></span><?php the_field('testimonial_heading', 'option'); ?></h3>
                </div>
                <div class="col-md-6">
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry.d </p>
+                  <p><?php the_field('testimonial_description', 'option'); ?></p>
                </div>
             </div>
          </div>
@@ -354,10 +354,10 @@ get_header();?>
          <div class="container">
             <div class="row section-title">
                <div class="col-md-6 text-right">
-                  <h3><span>who we are?</span> latest news</h3>
+                  <h3><span><?php the_field('blog_subheading', 'option'); ?></span><?php the_field('blog_heading', 'option'); ?></h3>
                </div>
                <div class="col-md-6">
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry typesetting industry.d </p>
+                  <p><?php the_field('blog_description', 'option'); ?></p>
                </div>
             </div>
             <div class="row">

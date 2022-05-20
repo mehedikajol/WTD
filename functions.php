@@ -3,7 +3,7 @@
 function halim_setup(){
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails', array(
-        'post', 'sliders', 'teams', 'testimonials',
+        'post', 'sliders', 'teams', 'testimonials', 'portfolio'
     ));
     load_theme_textdomain('halim', get_template_directory() . '/languages');
 
@@ -167,6 +167,42 @@ function halim_custom_posts(){
         ),
     ));
 
+    // ADDING PORTFOLIO
+    register_post_type('portfolio', array(
+        'labels' => array(
+            'name' => __('Portfolios', 'halim'),
+            'singular_name' => __('Portfolio', 'halim'),
+            'menu_name' => __('Portfolios', 'halim'),
+            'name_admin_bar' => __('Portfolio', 'halim'),
+            'add_new' => __('Add Portfolio', 'halim'),
+            'add_new_item' => __('Add New Portfolio', 'halim'),
+            'new_item' => __('New Portfolio', 'halim'),
+            'edit_item' => __('Edit Portfolio', 'halim'),
+            'view_item' => __('View Portfolio', 'halim'),
+            'all_items' => __('All Portfolios', 'halim'),
+            'search_items' => __('Search Portfolios', 'halim'),
+            'not_found' => __('No Portfolios Found', 'halim'),
+            'not_found_in_trash' => __('No Portfolios in Trash', 'halim'),
+            'featured_image' => __( 'Portfolio Image', 'halim'),
+            'set_featured_image'    => __( 'Set Portfolio Image', 'halim'),
+            'remove_featured_image' => __( 'Remove Portfolio Image', 'halim'),
+            'use_featured_image'    => __( 'Use Portfolio image', 'halim'),
+        ),
+        'public' => true,
+        'show_ui' => true,
+        'supports' => array(
+            'title', 'editor', 'custom-fields', 'thumbnail',
+        ),
+    ));
+    register_taxonomy( 'portfolio-cat', 'portfolio', array(
+        'labels' => array(
+            'name' => __('Categories', 'halim'),
+            'singular_name' => __('Category', 'halim'),
+        ),
+        'hierarchical' => true,
+        'show_admin_column' => true,
+    ));
+
 }
 add_action('init', 'halim_custom_posts');
 
@@ -211,4 +247,39 @@ if( function_exists('acf_add_options_page') ) {
 		'parent_slug'	=> 'halim-options',
 	));
 	
+    acf_add_options_sub_page(array(
+		'page_title' 	=> __('Halim Services Header Options', 'halim'),
+		'menu_title'	=> __('Services Section', 'halim'),
+		'parent_slug'	=> 'halim-options',
+	));
+
+    acf_add_options_sub_page(array(
+		'page_title' 	=> __('Halim Team Header Options', 'halim'),
+		'menu_title'	=> __('Team Section', 'halim'),
+		'parent_slug'	=> 'halim-options',
+	));
+
+    acf_add_options_sub_page(array(
+		'page_title' 	=> __('Halim Testimonial Header Options', 'halim'),
+		'menu_title'	=> __('Testimonial Section', 'halim'),
+		'parent_slug'	=> 'halim-options',
+	));
+
+    acf_add_options_sub_page(array(
+		'page_title' 	=> __('Halim Blog Header Options', 'halim'),
+		'menu_title'	=> __('Blog Section', 'halim'),
+		'parent_slug'	=> 'halim-options',
+	));
+
+    acf_add_options_sub_page(array(
+		'page_title' 	=> __('Halim CTA Options', 'halim'),
+		'menu_title'	=> __('CTA Section', 'halim'),
+		'parent_slug'	=> 'halim-options',
+	));
+
+    acf_add_options_sub_page(array(
+		'page_title' 	=> __('Halim Footer Options', 'halim'),
+		'menu_title'	=> __('Footer Section', 'halim'),
+		'parent_slug'	=> 'halim-options',
+	));
 }
