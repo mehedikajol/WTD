@@ -355,10 +355,17 @@ if( function_exists('acf_add_options_page') ) {
 	));
 
     acf_add_options_sub_page(array(
+		'page_title' 	=> __('Halim Contact Options', 'halim'),
+		'menu_title'	=> __('Contact Page', 'halim'),
+		'parent_slug'	=> 'halim-options',
+	));
+
+    acf_add_options_sub_page(array(
 		'page_title' 	=> __('Halim Footer Options', 'halim'),
 		'menu_title'	=> __('Footer Section', 'halim'),
 		'parent_slug'	=> 'halim-options',
 	));
+    
 }
 
 // REARRANGING COMMENT FIELDS

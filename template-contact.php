@@ -28,37 +28,36 @@ get_header();?>
             <div class="row">
                <div class="col-md-10 mx-auto">
                   <div class="row text-center">
-                     <div class="col-md-4">
-                        <div class="contact-address">
-                           <i class="fa fa-map-marker"></i>
-                           <h4>address <span>123, michighan, usa</span></h4>
+
+                     <?php
+                        $contact_lists = get_field('contact_lists', 'option');
+                        foreach($contact_lists as $contact_list){
+                     ?>
+                        <div class="col-md-4">
+                           <div class="contact-address">
+                              <i class="fa <?php echo $contact_list['icon']; ?>"></i>
+                              <h4><?php echo $contact_list['title']; ?><span><?php echo $contact_list['description']; ?></span></h4>
+                           </div>
                         </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="contact-address">
-                           <i class="fa fa-phone"></i>
-                           <h4>phone <span>11223344</span></h4>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="contact-address">
-                           <i class="fa fa-envelope"></i>
-                           <h4>email <span>info@demo.com</span></h4>
-                        </div>
-                     </div>
+                     <?php 
+                        }
+                     ?>
                   </div>
                   <div class="row">
                      <div class="col-md-7">
                         <div class="contact-form">
-                           <form action="#">
-                              <div class="row">
-                                 <input type="text" placeholder="name"/>
-                                 <input type="text" placeholder="email"/>
-                                 <input type="text" placeholder="subject"/>
-                                 <textarea placeholder="message"></textarea>
-                                 <input type="submit" value="send message"/>
-                              </div>
-                           </form>
+                           <?php echo do_shortcode('[contact-form-7 id="232" title="Contact Page Form"]'); ?>
+                           <!-- 
+                              <form action="#">
+                                 <div class="row">
+                                    <input type="text" placeholder="name"/>
+                                    <input type="text" placeholder="email"/>
+                                    <input type="text" placeholder="subject"/>
+                                    <textarea placeholder="message"></textarea>
+                                    <input type="submit" value="send message"/>
+                                 </div>
+                              </form>
+                           --> 
                         </div>
                      </div>
                      <div class="col-md-5">

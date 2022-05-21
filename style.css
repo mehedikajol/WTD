@@ -83,6 +83,9 @@ img.avatar.avatar-74.photo {
 .reply a {
   color: #ffffff;
 }
-.breadcumb{
+.breadcumb {
   text-transform: capitalize;
+}
+span.wpcf7-form-control-wrap {
+  width: 100%;
 }
