@@ -1339,34 +1339,15 @@ a.box-btn:hover i.fa {
   margin-bottom: 10px;
 }
 
-.pots-meta ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.pots-meta ul li {
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: 13px;
-}
-
-.pots-meta ul li:before {
-  content: "/";
-  padding: 0 5px;
-}
-
-.pots-meta ul li:first-child:before {
-  content: "";
-  padding-left: 0px;
-  margin-left: -5px;
-}
-
-.pots-meta {
+.post-meta {
   margin-bottom: 10px;
   border-bottom: 1px dashed #eee;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
+.post-meta a{
+  text-transform: capitalize !important;
+}
+
 .single-blog .box-btn {
   margin-top: 20px;
 }

@@ -378,7 +378,8 @@ get_header();?>
 
                <div class="col-md-4">
                   <div class="single-blog">
-                     <img src="<?php the_post_thumbnail_url(); ?>" alt="" />
+                     <div class="single-blog-img" style="background-image: url('<?php the_post_thumbnail_url(); ?>'); width: 100%; height: 250px;">
+                     </div>
                      <div class="post-content">
                         <div class="post-title">
                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
