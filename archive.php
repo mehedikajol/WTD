@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="breadcumb">
-                    <h4><?php echo single_post_title(); ?></h4>
+                    <h4><?php the_archive_title(); ?></h4>
                     <ul>
                         <li><a href="<?php echo site_url(); ?>">Home</a></li> / 
-                        <li><?php echo single_post_title(); ?></li>
+                        <li><?php the_archive_title(); ?></li>
                     </ul>
                 </div>
             </div>

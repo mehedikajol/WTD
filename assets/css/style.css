@@ -102,7 +102,6 @@ a {
 a:hover {
   color: #635cdb;
 }
-
 .pt-100 {
   padding-top: 100px;
 }
@@ -1344,7 +1343,7 @@ a.box-btn:hover i.fa {
   border-bottom: 1px dashed #eee;
   padding-bottom: 5px;
 }
-.post-meta a{
+.post-meta a {
   text-transform: capitalize !important;
 }
 
@@ -1401,6 +1400,9 @@ a.box-btn:hover i.fa {
   font-weight: bold;
   cursor: pointer;
 }
+.single-sidebar {
+  margin-bottom: 20px !important;
+}
 
 .single-sidebar h4,
 .portfolio-sidebar h4 {
@@ -1414,8 +1416,9 @@ a.box-btn:hover i.fa {
   margin: 0;
   padding: 0;
   list-style: none;
+  margin-bottom: 35px;
 }
-.single-sidebar,
+
 .portfolio-sidebar {
   margin-bottom: 50px;
 }
@@ -1626,7 +1629,7 @@ a.box-btn:hover i.fa {
 .breadcumb ul li {
   margin: 0 10px;
 }
-.breadcumb ul li a{
+.breadcumb ul li a {
   color: #ffffff !important;
 }
 

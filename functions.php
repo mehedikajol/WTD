@@ -17,7 +17,7 @@ add_action('after_setup_theme', 'halim_setup');
 // ADDING STYLES AND SCRIPTS
 function halim_assets() {
 
-    wp_enqueue_style( 'google-font', '//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700', array(), '1.0.0', 'all' );
+    wp_enqueue_style( 'google-font', '//fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700', array(), '1.0.0', 'all' );
     wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '1.0.0', 'all' );
     wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '1.0.0', 'all' );
     wp_enqueue_style( 'magnific-popup', get_template_directory_uri() . '/assets/css/magnific-popup.css', array(), '1.0.0', 'all' );
@@ -234,6 +234,55 @@ function halim_custom_posts(){
 }
 add_action('init', 'halim_custom_posts');
 
+// REGISTER SIDEBAR
+function halim_widgets_init() {
+
+    // MAIN SIDEBAR
+    register_sidebar( array(
+        'name'          => __( 'Main Sidebar', 'halim' ),
+        'id'            => 'sidebar-1',
+        'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'textdomain' ),
+        'before_widget' => '<div class="single-sidebar">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4>',
+        'after_title'   => '</h4>',
+    ));
+
+    // FOOTER SIDEBAR 01
+    register_sidebar( array(
+        'name'          => __( 'Footer 1', 'halim' ),
+        'id'            => 'footer-1',
+        'description'   => __( 'Footer widget 01 goes here', 'textdomain' ),
+        'before_widget' => '<div class="single-footer">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3>',
+        'after_title'   => '</h3>',
+    ));
+
+    // FOOTER SIDEBAR 01
+    register_sidebar( array(
+        'name'          => __( 'Footer 2', 'halim' ),
+        'id'            => 'footer-2',
+        'description'   => __( 'Footer widget 02 goes here', 'textdomain' ),
+        'before_widget' => '<div class="single-footer">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4>',
+        'after_title'   => '</h4>',
+    ));
+
+    // FOOTER SIDEBAR 01
+    register_sidebar( array(
+        'name'          => __( 'Footer 3', 'halim' ),
+        'id'            => 'footer-3',
+        'description'   => __( 'Footer widget 03 goes here', 'textdomain' ),
+        'before_widget' => '<div class="single-footer">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4>',
+        'after_title'   => '</h4>',
+    ));
+}
+add_action( 'widgets_init', 'halim_widgets_init' );
+
 
 function acf_custom_css(){
 ?>
@@ -311,3 +360,51 @@ if( function_exists('acf_add_options_page') ) {
 		'parent_slug'	=> 'halim-options',
 	));
 }
+
+// REARRANGING COMMENT FIELDS
+function rearrange_comment_forms( $fields ) {
+    $comment_field = $fields['comment'];
+    unset( $fields['comment'] );
+    $fields['comment'] = $comment_field;
+    return $fields;
+}
+add_filter( 'comment_form_fields', 'rearrange_comment_forms' );
+
+// ADDING PLACEHOLDER TO COMMENT FIELDS
+function add_comment_placeholder( $fields )
+{
+    $fields['author'] = str_replace(
+        '<input',
+        '<input placeholder="'
+            . __(
+                'Name',
+                'comment form placeholder',
+                'halim'
+                )
+            . '"',
+        $fields['author']
+    );
+    $fields['email'] = str_replace(
+        '<input id="email" name="email" type="text"',
+        '<input type="email" placeholder="Email"  id="email" name="email"',
+        $fields['email']
+    );
+    $fields['url'] = str_replace(
+        '<input id="url" name="url" type="text"',
+        '<input placeholder="Website" id="url" name="url" type="url"',
+        $fields['url']
+    );
+    return $fields;
+}
+add_filter( 'comment_form_default_fields', 'add_comment_placeholder' );
+
+// ADDING PLACEHOLDER TO COMMENT TEXTAREA FIELD
+function placeholder_comment_form_field($fields){
+    $fields['comment_field'] = str_replace(
+        '<textarea id="comment" name="comment" cols="45" rows="8"',
+        '<textarea id="comment" placeholder="Message" name="comment" cols="45" rows="4"',
+        $fields['comment_field']
+    );
+    return $fields;
+}
+add_filter( 'comment_form_defaults', 'placeholder_comment_form_field' );

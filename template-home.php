@@ -384,11 +384,10 @@ get_header();?>
                         <div class="post-title">
                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                         </div>
-                        <div class="pots-meta">
-                           <ul>
-                              <li><a href="#"><?php echo get_the_date('j F Y'); ?></a></li>
-                              <li><a href="#"><?php echo get_the_author(); ?></a></li>
-                           </ul>
+                        <div class="post-meta">
+                              <?php echo get_the_date('j F Y'); ?> / 
+                              <?php the_author_posts_link(); ?> / 
+                              <?php the_category(', '); ?>
                         </div>
                         <p><?php the_excerpt(); ?></p>
                         <a href="<?php the_permalink(); ?>" class="box-btn">read more <i class="fa fa-angle-double-right"></i></a>

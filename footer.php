@@ -18,32 +18,29 @@
       <div class="row">
          <div class="col-lg-3 col-md-6">
             <div class="single-footer footer-logo">
-               <h3>halim</h3>
-               <p>Lorem ipsum dolor adipisicing amet, consectetur sit elit. Aspernatur incidihil quo officia.</p>
+               <?php 
+                  if(is_active_sidebar('footer-1')){ 
+                     dynamic_sidebar('footer-1'); 
+                  } 
+               ?>
             </div>
          </div>
          <div class="col-lg-2 col-md-6">
             <div class="single-footer">
-               <h4>quick links</h4>
-               <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Our Services</a></li>
-                  <li><a href="#">Gallery</a></li>
-                  <li><a href="#">Contact Us</a></li>
-               </ul>
+               <?php 
+                  if(is_active_sidebar('footer-2')){ 
+                     dynamic_sidebar('footer-2'); 
+                  } 
+               ?>
             </div>
          </div>
          <div class="col-lg-4 col-md-6">
             <div class="single-footer">
-               <h4>latest post</h4>
-               <ul>
-                  <li><a href="#">lorem ipsum dummy text</a></li>
-                  <li><a href="#">lorem ipsum dummy text</a></li>
-                  <li><a href="#">lorem ipsum dummy text</a></li>
-                  <li><a href="#">lorem ipsum dummy text</a></li>
-                  <li><a href="#">lorem ipsum dummy text</a></li>
-               </ul>
+               <?php 
+                  if(is_active_sidebar('footer-3')){ 
+                     dynamic_sidebar('footer-3'); 
+                  } 
+               ?>
             </div>
          </div>
          <div class="col-lg-3 col-md-6">
