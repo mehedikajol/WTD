@@ -14,14 +14,16 @@ get_header();?>
             $args = array(  
                'post_type' => 'sliders',
                'posts_per_page' => 3, 
-           );
-           $query = new WP_Query($args);
-           if($query -> have_posts()){
-              while($query -> have_posts()){
-                 $query -> the_post();
-                 $slider_subheading = get_field('slider_subheading');
-                 $slider_button_text = get_field('slider_button_text');
-                 $slider_button_link = get_field('slider_button_link');
+            );
+            $query = new WP_Query($args);
+            if($query -> have_posts()){
+               while($query -> have_posts()){
+                  $query -> the_post();
+                  if(class_exists('ACF')){
+                     $slider_subheading = get_field('slider_subheading');
+                     $slider_button_text = get_field('slider_button_text');
+                     $slider_button_link = get_field('slider_button_link');
+                  }
          ?>
 
             <div class="single-slide" style="background-image:url('<?php the_post_thumbnail_url(); ?>')">
@@ -31,12 +33,12 @@ get_header();?>
                         <div class="slide-table">
                            <div class="slide-tablecell">
                               <h4><?php the_title();?></h4>
-                              <h2><?php echo $slider_subheading; ?></h2>
+                              <h2><?php echo esc_attr($slider_subheading); ?></h2>
                               <p><?php the_content();?></p>
                               <?php 
                                  if($slider_button_text){
                               ?>
-                                 <a href="<?php echo $slider_button_link; ?>" class="box-btn" target="_blank"><?php echo $slider_button_text; ?> <i class="fa fa-angle-double-right"></i></a>
+                                 <a href="<?php echo esc_url($slider_button_link); ?>" class="box-btn" target="_blank"><?php echo esc_attr($slider_button_text); ?> <i class="fa fa-angle-double-right"></i></a>
                               <?php
                                  }
                               ?>
@@ -62,16 +64,18 @@ get_header();?>
          <div class="container">
             <div class="row section-title">
                <?php 
-                  $about_section = get_field('about_section_title', 'option');
+                  if(class_exists('ACF')){
+                     $about_section = get_field('about_section_title', 'option');
+                  }
                ?>
                <div class="col-md-6 text-right">
                   <h3>
-                     <span><?php echo $about_section['subheading'] ?></span>
-                     <?php echo $about_section['heading'] ?>
+                     <span><?php echo esc_attr($about_section['subheading']); ?></span>
+                     <?php echo esc_attr($about_section['heading']); ?>
                   </h3>
                </div>
                <div class="col-md-6">
-                  <p><?php echo $about_section['description'] ?></p>
+                  <p><?php echo esc_attr($about_section['description']); ?></p>
                </div>
             </div>
             <div class="row">
@@ -79,29 +83,32 @@ get_header();?>
                   <div class="about">
                      
                      <?php
-                        $about_content = get_field('about_content', 'option');
-
+                        if(class_exists('ACF')){
+                           $about_content = get_field('about_content', 'option');
+                        }
                      ?>
                      <div class="page-title">
-                        <h4><?php echo $about_content['title'] ?></h4>
+                        <h4><?php echo esc_attr($about_content['title']); ?></h4>
                      </div>
-                     <p><?php echo $about_content['description'] ?></p>
-                     <a href="<?php echo $about_content['button_link'] ?>" class="box-btn"><?php echo $about_content['button_text'] ?> <i class="fa fa-angle-double-right"></i></a>
+                     <p><?php echo esc_attr($about_content['description']); ?></p>
+                     <a href="<?php echo esc_url($about_content['button_link']); ?>" class="box-btn"><?php echo esc_attr($about_content['button_text']); ?> <i class="fa fa-angle-double-right"></i></a>
 
                   </div>
                </div>
                <div class="col-md-5">
 
                   <?php
-                     $about_features = get_field('about_features', 'option');
-                     foreach($about_features as $about_feature){
-                  ?>
-                     <div class="single_about">
-                        <i class="fa <?php echo $about_feature['icon']; ?>"></i>
-                        <h4><?php echo $about_feature['title']; ?></h4>
-                        <p><?php echo $about_feature['description']; ?></p>
-                     </div>
-                  <?php
+                     if(class_exists('ACF')){
+                        $about_features = get_field('about_features', 'option');
+                        foreach($about_features as $about_feature){
+                     ?>
+                        <div class="single_about">
+                           <i class="fa <?php echo esc_attr($about_feature['icon']); ?>"></i>
+                           <h4><?php echo esc_attr($about_feature['title']); ?></h4>
+                           <p><?php echo esc_attr($about_feature['description']); ?></p>
+                        </div>
+                     <?php
+                        }
                      }   
                   ?>
                   
@@ -118,30 +125,38 @@ get_header();?>
                <div class="col-md-6">
                   <div class="faq">
                      <div class="page-title">
-                        <h4><?php the_field('faq_title', 'option'); ?></h4>
+                        <h4>
+                           <?php
+                              if(class_exists('ACF')){
+                                 echo esc_attr(the_field('faq_title', 'option'));
+                              }
+                           ?>
+                        </h4>
                      </div>
                      <div class="accordion" id="accordionExample">
                         <?php
-                           $faqs = get_field('faqs', 'option');
-                           $i = 0;
-                           foreach($faqs as $faq){
-                              $i++;
-                        ?>
-                           <div class="card">
-                              <div class="card-header" id="heading<?php echo $i; ?>">
-                                 <h5 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<?php echo $i; ?>" aria-expanded="true" aria-controls="collapse<?php echo $i; ?>">
-                                    <?php echo $faq['title']; ?> 
-                                    </button>
-                                 </h5>
-                              </div>
-                              <div id="collapse<?php echo $i; ?>" class="collapse <?php if($i == 1) {echo 'show';} ?>" aria-labelledby="heading<?php echo $i; ?>" data-parent="#accordionExample">
-                                 <div class="card-body">
-                                 <?php echo $faq['description']; ?>
+                           if(class_exists('ACF')){
+                              $faqs = get_field('faqs', 'option');
+                              $i = 0;
+                              foreach($faqs as $faq){
+                                 $i++;
+                           ?>
+                              <div class="card">
+                                 <div class="card-header" id="heading<?php echo $i; ?>">
+                                    <h5 class="mb-0">
+                                       <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<?php echo $i; ?>" aria-expanded="true" aria-controls="collapse<?php echo $i; ?>">
+                                       <?php echo esc_attr($faq['title']); ?> 
+                                       </button>
+                                    </h5>
+                                 </div>
+                                 <div id="collapse<?php echo $i; ?>" class="collapse <?php if($i == 1) {echo 'show';} ?>" aria-labelledby="heading<?php echo $i; ?>" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                    <?php echo esc_attr($faq['description']); ?>
+                                    </div>
                                  </div>
                               </div>
-                           </div>
-                        <?php
+                           <?php
+                              }
                            }
                         ?>
                         
@@ -151,18 +166,26 @@ get_header();?>
                <div class="col-md-6">
                   <div class="skills">
                      <div class="page-title">
-                        <h4><?php the_field('skills_title', 'option'); ?></h4>
+                        <h4>
+                           <?php 
+                              if(class_exists('ACF')){ 
+                                 echo esc_attr(the_field('skills_title', 'option'));
+                              } 
+                           ?>
+                        </h4>
                      </div>
                      
                      <?php
-                        $skills = get_field('skills', 'option');
-                        foreach($skills as $skill){
-                     ?>
-                        <div class="single-skill">
-                           <h4><?php echo $skill['skill_title']; ?></h4>
-                           <div class="progress-bar" role="progressbar" style="width: <?php echo $skill['skill_percentage']; ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo $skill['skill_percentage']; ?>%</div>
-                        </div>
-                     <?php
+                        if(class_exists('ACF')){ 
+                           $skills = get_field('skills', 'option');
+                           foreach($skills as $skill){
+                        ?>
+                           <div class="single-skill">
+                              <h4><?php echo esc_attr($skill['skill_title']); ?></h4>
+                              <div class="progress-bar" role="progressbar" style="width: <?php echo $skill['skill_percentage']; ?>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo $skill['skill_percentage']; ?>%</div>
+                           </div>
+                        <?php
+                           }
                         }
                      ?>
                      
@@ -191,17 +214,20 @@ get_header();?>
                if($query -> have_posts()){
                      while($query -> have_posts()){
                         $query -> the_post();
-                        $counter_number = get_field('counter_number');
-                        $counter_icon = get_field('counter_icon');
-            ?>
+                        if(class_exists('ACF')){ 
+                           $counter_number = get_field('counter_number');
+                           $counter_icon = get_field('counter_icon');
+                        
+               ?>
 
-               <div class="col-md-3">
-                  <div class="single-counter">
-                     <h4><i class="<?php echo $counter_icon; ?>"></i><span class="counter"><?php echo $counter_number; ?></span><?php the_title(); ?></span></h4>
+                  <div class="col-md-3">
+                     <div class="single-counter">
+                        <h4><i class="<?php echo esc_attr($counter_icon); ?>"></i><span class="counter"><?php echo esc_attr($counter_number); ?></span><?php the_title(); ?></span></h4>
+                     </div>
                   </div>
-               </div>
 
-            <?php 
+               <?php 
+                     }
                   }
                   wp_reset_postdata();
                }
@@ -216,10 +242,24 @@ get_header();?>
          <div class="container">
             <div class="row section-title">
                <div class="col-md-6 text-right">
-                  <h3><span><?php the_field('team_subheading', 'option'); ?></span><?php the_field('team_heading', 'option'); ?></h3>
+                  <h3><span>
+                     <?php 
+                        if(class_exists('ACF')){ 
+                           echo esc_attr(the_field('team_subheading', 'option'));
+                        } 
+                     ?></span>
+                     <?php 
+                        if(class_exists('ACF')){ 
+                           echo esc_attr(the_field('team_heading', 'option')); 
+                        }
+                     ?></h3>
                </div>
                <div class="col-md-6">
-                  <p><?php the_field('team_description', 'option'); ?></p>
+                  <p><?php 
+                     if(class_exists('ACF')){ 
+                        echo esc_attr(the_field('team_description', 'option'));
+                     } 
+                  ?></p>
                </div>
             </div>
             <div class="row">
@@ -235,41 +275,43 @@ get_header();?>
                if($query -> have_posts()){
                   while($query -> have_posts()){
                      $query -> the_post();
-                     $team_designation = get_field('team_designation');
-                     $facebook_link = get_field('facebook_link');
-                     $linkedin_link = get_field('linkedin_link');
-                     $twitter_link = get_field('twitter_link');
-                     $instagram_link = get_field('instagram_link');
+                     if(class_exists('ACF')){ 
+                        $team_designation = get_field('team_designation');
+                        $facebook_link = get_field('facebook_link');
+                        $linkedin_link = get_field('linkedin_link');
+                        $twitter_link = get_field('twitter_link');
+                        $instagram_link = get_field('instagram_link');
+                     }
 
             ?>
 
                <div class="col-md-4">
                   <div class="single-team">
-                     <img src="<?php echo the_post_thumbnail_url(); ?>" alt="" />
+                     <img src="<?php echo esc_url(the_post_thumbnail_url()); ?>" alt="" />
                      <div class="team-hover">
                         <div class="team-content">
-                           <h4><?php the_title(); ?> <span><?php echo $team_designation;?></span></h4>
+                           <h4><?php echo esc_attr(the_title()); ?> <span><?php echo esc_attr($team_designation);?></span></h4>
                            <ul>
                               <?php 
                                  if($facebook_link){
                               ?>
-                                 <li><a href="<?php echo $facebook_link; ?>"><i class="fa fa-facebook" title="Facebook"></i></a></li>
+                                 <li><a href="<?php echo esc_url($facebook_link); ?>"><i class="fa fa-facebook" title="Facebook"></i></a></li>
                               <?php
                                  }
                                  if($twitter_link){
                               ?>
                               
-                                 <li><a href="<?php echo $twitter_link; ?>"><i class="fa fa-twitter" title="Twitter"></i></a></li>
+                                 <li><a href="<?php echo esc_url($twitter_link); ?>"><i class="fa fa-twitter" title="Twitter"></i></a></li>
                               <?php
                                  }
                                  if($linkedin_link){
                               ?>
-                                 <li><a href="<?php echo $linkedin_link; ?>"><i class="fa fa-linkedin" title="Linkedin"></i></a></li>
+                                 <li><a href="<?php echo esc_url($linkedin_link); ?>"><i class="fa fa-linkedin" title="Linkedin"></i></a></li>
                               <?php
                                  }
                                  if($instagram_link){
                               ?>
-                                 <li><a href="<?php echo $instagram_link; ?>"><i class="fa fa-instagram" title="Instagram"></i></a></li>
+                                 <li><a href="<?php echo esc_url($instagram_link); ?>"><i class="fa fa-instagram" title="Instagram"></i></a></li>
                               <?php
                                  }
                               ?>
@@ -354,10 +396,21 @@ get_header();?>
          <div class="container">
             <div class="row section-title">
                <div class="col-md-6 text-right">
-                  <h3><span><?php the_field('blog_subheading', 'option'); ?></span><?php the_field('blog_heading', 'option'); ?></h3>
+                  <h3><span>
+                     <?php 
+                        if(class_exists('ACF')){
+                           echo esc_attr(the_field('blog_subheading', 'option')); 
+                     ?></span>
+                     <?php 
+                           echo esc_attr(the_field('blog_heading', 'option')); 
+                        
+                     ?></h3>
                </div>
                <div class="col-md-6">
-                  <p><?php the_field('blog_description', 'option'); ?></p>
+                  <p><?php 
+                        echo esc_attr(the_field('blog_description', 'option')); 
+                     }
+                  ?></p>
                </div>
             </div>
             <div class="row">
@@ -378,19 +431,19 @@ get_header();?>
 
                <div class="col-md-4">
                   <div class="single-blog">
-                     <div class="single-blog-img" style="background-image: url('<?php the_post_thumbnail_url(); ?>'); width: 100%; height: 250px;">
+                     <div class="single-blog-img" style="background-image: url('<?php echo esc_url(the_post_thumbnail_url()); ?>'); width: 100%; height: 250px;">
                      </div>
                      <div class="post-content">
                         <div class="post-title">
-                           <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                           <h4><a href="<?php echo esc_url(the_permalink()); ?>"><?php echo esc_attr(the_title()); ?></a></h4>
                         </div>
                         <div class="post-meta">
                               <?php echo get_the_date('j F Y'); ?> / 
-                              <?php the_author_posts_link(); ?> / 
-                              <?php the_category(', '); ?>
+                              <?php echo esc_url(the_author_posts_link()); ?> / 
+                              <?php echo esc_url(the_category(', ')); ?>
                         </div>
-                        <p><?php the_excerpt(); ?></p>
-                        <a href="<?php the_permalink(); ?>" class="box-btn">read more <i class="fa fa-angle-double-right"></i></a>
+                        <p><?php echo esc_url(the_excerpt()); ?></p>
+                        <a href="<?php echo esc_url(the_permalink()); ?>" class="box-btn">read more <i class="fa fa-angle-double-right"></i></a>
                      </div>
                   </div>
                </div>

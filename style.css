@@ -89,3 +89,9 @@ img.avatar.avatar-74.photo {
 span.wpcf7-form-control-wrap {
   width: 100%;
 }
+.blog-single p,
+.portfolio-single p,
+.page-tempalte p {
+  margin: 20px 0;
+  text-align: justify;
+}

@@ -30,16 +30,18 @@ get_header();?>
                   <div class="row text-center">
 
                      <?php
-                        $contact_lists = get_field('contact_lists', 'option');
-                        foreach($contact_lists as $contact_list){
-                     ?>
-                        <div class="col-md-4">
-                           <div class="contact-address">
-                              <i class="fa <?php echo $contact_list['icon']; ?>"></i>
-                              <h4><?php echo $contact_list['title']; ?><span><?php echo $contact_list['description']; ?></span></h4>
+                        if(class_exists('ACF')){
+                           $contact_lists = get_field('contact_lists', 'option');
+                           foreach($contact_lists as $contact_list){
+                        ?>
+                           <div class="col-md-4">
+                              <div class="contact-address">
+                                 <i class="fa <?php echo esc_attr($contact_list['icon']); ?>"></i>
+                                 <h4><?php echo $contact_list['title']; ?><span><?php echo $contact_list['description']; ?></span></h4>
+                              </div>
                            </div>
-                        </div>
-                     <?php 
+                        <?php 
+                           }
                         }
                      ?>
                   </div>

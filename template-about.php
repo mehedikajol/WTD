@@ -37,15 +37,17 @@ get_header();?>
                </div>
                <div class="col-md-5">
                   <?php
-                     $about_page_features = get_field('about_page_features');
-                     foreach($about_page_features as $about_page_feature){
+                     if(class_exists('ACF')){
+                        $about_page_features = get_field('about_page_features');
+                        foreach($about_page_features as $about_page_feature){
                   ?>
-                     <div class="single_about">
-                        <i class="fa <?php echo $about_page_feature['feature_icon']; ?>"></i>
-                        <h4><?php echo $about_page_feature['feature_title']; ?></h4>
-                        <p><?php echo $about_page_feature['feature_description']; ?></p>
-                     </div>
+                        <div class="single_about">
+                           <i class="fa <?php echo esc_attr($about_page_feature['feature_icon']); ?>"></i>
+                           <h4><?php echo $about_page_feature['feature_title']; ?></h4>
+                           <p><?php echo $about_page_feature['feature_description']; ?></p>
+                        </div>
                   <?php
+                        }
                      }
                   ?>
                </div>
