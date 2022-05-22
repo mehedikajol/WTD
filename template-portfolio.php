@@ -62,10 +62,16 @@ get_header();?>
                      ?>
                   ">
                      <div class="single-portfolio">
-                        <img src="<?php echo the_post_thumbnail_url(); ?>" alt="">
+                        <img src="<?php echo esc_url(the_post_thumbnail_url()); ?>" alt="">
                         <div class="portfolio-hover">
                            <div class="portfolio-content">
-                              <h3><a target="_blank" href="<?php the_permalink(); ?>" class=""><i class="fa fa-link"></i> <?php the_title(); ?> <span><?php the_field('designations'); ?></span></a></h3>
+                              <h3><a target="_blank" href="<?php echo esc_url(the_permalink()); ?>" class=""><i class="fa fa-link"></i> <?php echo esc_attr(the_title()); ?> <span>
+                              <?php 
+                                 if(class_exists('ACF')){
+                                    echo esc_attr(the_field('designations')); 
+                                 }
+                              ?>
+                              </span></a></h3>
                            </div>
                         </div>
                      </div>

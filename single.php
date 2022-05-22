@@ -24,16 +24,6 @@
                 <img src="<?php the_post_thumbnail_url(); ?>" alt="">
                 <?php the_content(); ?>
                 <div class="comments">
-                    <!-- 
-                        <h4>leave a reply</h4>
-                        <form action="">
-                            <input type="text" placeholder="Name">
-                            <input type="text" placeholder="Email">
-                            <input type="text" placeholder="Subject">
-                            <textarea placeholder="Message"></textarea>
-                            <input type="submit" value="Send">
-                        </form>
-                    -->
                     <?php
                         if (comments_open() || get_comments_number()){
                             comments_template();

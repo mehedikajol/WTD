@@ -15,21 +15,23 @@
 						<div class="header-left">
 
                      <?php 
-                        $email = get_field('email', 'option');
-                        $phone = get_field('phone_number', 'option');
-                        if($email){
-                     ?>
-                        <a href="mailto:<?php echo $email; ?>">
-                           <i class="fa fa-envelope"></i> <?php echo $email; ?>
-                        </a>
-                     <?php 
-                        }
-                        if($phone){
-                     ?>
-                        <a href="tel:<?php echo $phone; ?>">
-                           <i class="fa fa-phone"></i> <?php echo $phone; ?>
-                        </a>
-                     <?php
+                        if(class_exists('ACF')){
+                           $email = get_field('email', 'option');
+                           $phone = get_field('phone_number', 'option');
+                           if($email){
+                        ?>
+                           <a href="mailto:<?php echo esc_attr($email); ?>">
+                              <i class="fa fa-envelope"></i> <?php echo esc_attr($email); ?>
+                           </a>
+                        <?php 
+                           }
+                           if($phone){
+                        ?>
+                           <a href="tel:<?php echo esc_attr($phone); ?>">
+                              <i class="fa fa-phone"></i> <?php echo esc_attr($phone); ?>
+                           </a>
+                        <?php
+                           }
                         }
                      ?>
 							
@@ -39,11 +41,13 @@
 						<div class="header-social">
 
                      <?php 
-                        $socials = get_field('header_socials', 'option');
-                        foreach($socials as $social){
-                     ?>
-                        <a href="<?php echo $social['icon_link'];?>"><i class="fa <?php echo $social['icon'];?>"></i></a>
-                     <?php
+                        if(class_exists('ACF')){
+                           $socials = get_field('header_socials', 'option');
+                           foreach($socials as $social){
+                        ?>
+                           <a href="<?php echo esc_url($social['icon_link']);?>"><i class="fa <?php echo esc_attr($social['icon']);?>"></i></a>
+                        <?php
+                           }
                         }
                      ?>
 
@@ -58,7 +62,7 @@
             <div class="row">
                <div class="col-xl-12">
                   <nav class="navbar navbar-expand-md navbar-light">
-                     <a class="navbar-brand" href="<?php echo site_url(); ?>">halim</a>
+                     <a class="navbar-brand" href="<?php echo esc_url(site_url()); ?>">halim</a>
                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                      <span class="navbar-toggler-icon"></span>
                      </button>

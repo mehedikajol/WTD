@@ -19,26 +19,28 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-8">
-                <h2><?php the_title(); ?></h2>
-                <img src="<?php the_post_thumbnail_url(); ?>" alt="">
+                <h2><?php echo esc_attr(the_title()); ?></h2>
+                <img src="<?php echo esc_url(the_post_thumbnail_url()); ?>" alt="">
                 <?php the_content(); ?>
                 <div class="row">
-                   <div class="col-xl-12">
-                     <h4>project gallery</h4>
-                   </div>
-                   
-                   <?php
-                     $gallerys = get_field('project_gallery');
-                     foreach($gallerys as $gallery){
-                  ?>
-                     <div class="col-xl-4">
-                        <div class="project-gallery">
-                           <img src="<?php echo $gallery['url']; ?>" alt="">
-                        </div>
-                     </div>
-                  <?php
-                     }
-                   ?>
+                    <div class="col-xl-12">
+                        <h4>project gallery</h4>
+                    </div>
+                    
+                    <?php
+                        if(class_exists('ACF')){
+                            $gallerys = get_field('project_gallery');
+                            foreach($gallerys as $gallery){
+                            ?>
+                                <div class="col-xl-4">
+                                    <div class="project-gallery">
+                                    <img src="<?php echo esc_url($gallery['url']); ?>" alt="">
+                                    </div>
+                                </div>
+                            <?php
+                            }
+                        }
+                    ?>
                    
                 </div>
                 <br><br>
@@ -53,15 +55,17 @@
                 <div class="portfolio-sidebar">
                     <h4>Technology Used</h4>
                     <ul>
-                       <?php 
-                           $techs = get_field('project_technologies');
-                           foreach($techs as $tech){
-                        ?>
-                           <li>
-                              <i class="fa fa-arrow-right"></i> <?php echo $tech['tech_name'] ?>
-                           </li>
                         <?php 
-                           }
+                            if(class_exists('ACF')){
+                                $techs = get_field('project_technologies');
+                                foreach($techs as $tech){
+                                ?>
+                                <li>
+                                    <i class="fa fa-arrow-right"></i> <?php echo esc_attr($tech['tech_name']); ?>
+                                </li>
+                                <?php 
+                                    }
+                            }
                         ?>   
                     </ul>
                 </div>
@@ -69,12 +73,14 @@
                     <h4>project features</h4>
                     <ul>
                         <?php 
-                           $features = get_field('project_features');
-                           foreach($features as $feature){
-                        ?>
-                           <li><i class="fa fa-arrow-right"></i> <?php echo $feature['project_feature'] ?></li>
-                        <?php 
-                           }
+                            if(class_exists('ACF')){
+                                $features = get_field('project_features');
+                                foreach($features as $feature){
+                            ?>
+                                <li><i class="fa fa-arrow-right"></i> <?php echo esc_attr($feature['project_feature']); ?></li>
+                            <?php 
+                                }
+                            }
                         ?>
                     </ul>
                 </div>

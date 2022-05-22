@@ -27,18 +27,20 @@ get_header();?>
          <div class="container">
             <div class="row">
                <?php 
-                  $services_options = get_field('services_options');
-                  foreach($services_options as $services_option){
-               ?>
-                  <div class="col-lg-4 col-md-6">
-                     <!-- Single Service -->
-                     <div class="single-service">
-                        <i class="fa <?php echo $services_option['service_icon']; ?>"></i>
-                        <h4><?php echo $services_option['service_title']; ?></h4>
-                        <p><?php echo $services_option['service_details']; ?></p>
+                  if(class_exists('ACF')){
+                     $services_options = get_field('services_options');
+                     foreach($services_options as $services_option){
+                  ?>
+                     <div class="col-lg-4 col-md-6">
+                        <!-- Single Service -->
+                        <div class="single-service">
+                           <i class="fa <?php echo esc_attr($services_option['service_icon']); ?>"></i>
+                           <h4><?php echo esc_attr($services_option['service_title']); ?></h4>
+                           <p><?php echo esc_attr($services_option['service_details']); ?></p>
+                        </div>
                      </div>
-                  </div>
-               <?php
+                  <?php
+                     }
                   }
                ?>            
             </div>

@@ -26,19 +26,19 @@
                   <div class="col-md-4">
                      <div class="single-blog">
 
-                        <div class="single-blog-img" style="background-image: url('<?php the_post_thumbnail_url(); ?>'); width: 100%; height: 250px;">
+                        <div class="single-blog-img" style="background-image: url('<?php echo esc_url(the_post_thumbnail_url()); ?>'); width: 100%; height: 250px;">
                         </div>
                         <div class="post-content">
                            <div class="post-title">
-                              <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                              <h4><a href="<?php echo esc_url(the_permalink()); ?>"><?php echo esc_attr(the_title()); ?></a></h4>
                            </div>
                            <div class="post-meta">
                                  <?php echo get_the_date('j F Y'); ?> / 
                                  <?php the_author_posts_link(); ?> / 
                                  <?php the_category(', '); ?>
                            </div>
-                           <p><?php the_excerpt(); ?></p>
-                           <a href="<?php the_permalink(); ?>" class="box-btn">read more <i class="fa fa-angle-double-right"></i></a>
+                           <p><?php echo esc_attr(the_excerpt()); ?></p>
+                           <a href="<?php echo esc_url(the_permalink()); ?>" class="box-btn">read more <i class="fa fa-angle-double-right"></i></a>
                         </div>
                      </div>
                   </div>
